@@ -1,103 +1,132 @@
-import Image from "next/image";
+import HeroComponent from "@/components/hero-component";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { HeroParallax } from "@/components/ui/hero-parallax";
+import About3 from "@/components/ui/about-3";
+
+const navItems = [
+	{
+		name: "Home",
+		link: "/",
+	},
+	{
+		name: "About",
+		link: "/about",
+	},
+	{
+		name: "Services",
+		link: "/services",
+	},
+	{
+		name: "Portfolio",
+		link: "/portfolio",
+	},
+	{
+		name: "Contact",
+		link: "/contact",
+	},
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+	// Film production themed images from Unsplash
+	const products = [
+		{
+			title: "Cinematic Lighting",
+			link: "https://unsplash.com/photos/cinema",
+			thumbnail:
+				"https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Film Equipment",
+			link: "https://unsplash.com/photos/camera",
+			thumbnail:
+				"https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Studio Setup",
+			link: "https://unsplash.com/photos/studio",
+			thumbnail:
+				"https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Creative Direction",
+			link: "https://unsplash.com/photos/director",
+			thumbnail:
+				"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Post Production",
+			link: "https://unsplash.com/photos/editing",
+			thumbnail:
+				"https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Brand Stories",
+			link: "https://unsplash.com/photos/brand",
+			thumbnail:
+				"https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Corporate Videos",
+			link: "https://unsplash.com/photos/corporate",
+			thumbnail:
+				"https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Documentary Work",
+			link: "https://unsplash.com/photos/documentary",
+			thumbnail:
+				"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Commercial Production",
+			link: "https://unsplash.com/photos/commercial",
+			thumbnail:
+				"https://images.unsplash.com/photo-1489599314464-1b493fd1b9d5?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Motion Graphics",
+			link: "https://unsplash.com/photos/motion",
+			thumbnail:
+				"https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Event Coverage",
+			link: "https://unsplash.com/photos/event",
+			thumbnail:
+				"https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Aerial Cinematography",
+			link: "https://unsplash.com/photos/aerial",
+			thumbnail:
+				"https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Color Grading",
+			link: "https://unsplash.com/photos/color",
+			thumbnail:
+				"https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Sound Design",
+			link: "https://unsplash.com/photos/sound",
+			thumbnail:
+				"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=80",
+		},
+		{
+			title: "Visual Effects",
+			link: "https://unsplash.com/photos/vfx",
+			thumbnail:
+				"https://images.unsplash.com/photo-1551739440-5dd934d3a94a?auto=format&fit=crop&w=600&q=80",
+		},
+	];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+	return (
+		<main className="relative">
+			<FloatingNav navItems={navItems} />
+			<HeroComponent />
+			<HeroParallax products={products} />
+			<About3 />
+		</main>
+	);
 }
